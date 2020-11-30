@@ -1,0 +1,2 @@
+class VaultCommunicationException(Exception):
+    super
