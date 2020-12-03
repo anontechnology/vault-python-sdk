@@ -1,4 +1,5 @@
 from vizivault.vizivault import ViziVault
+from vizivault.json_object import JSONObject
 from vizivault.user import User
 from vizivault.attribute_definition import AttributeDefinition
 from vizivault.entity import Entity
