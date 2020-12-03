@@ -1,4 +1,4 @@
-from anontech_vizivault.schema.primitive_schema import PrimitiveSchema
+from vizivault.schema.primitive_schema import PrimitiveSchema
 from json_object import JSONObject
 
 

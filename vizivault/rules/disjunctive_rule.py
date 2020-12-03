@@ -1,4 +1,4 @@
-from anontech_vizivault.rules.regulation_rule import RegulationRule
+from vizivault.rules.regulation_rule import RegulationRule
 
 
 class DisjunctiveRule(RegulationRule):

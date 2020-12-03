@@ -1,5 +1,5 @@
 from enum import Enum
-from anontech_vizivault.rules.regulation_rule import RegulationRule
+from vizivault.rules.regulation_rule import RegulationRule
 
 
 class AttributeListOperator(Enum):

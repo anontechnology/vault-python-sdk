@@ -1,4 +1,4 @@
-from anontech_vizivault.attribute import Attribute
+from vizivault.attribute import Attribute
 from itertools import chain
 from json_object import JSONObject
 

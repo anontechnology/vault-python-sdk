@@ -34,7 +34,7 @@ class SearchRequest(JSONObject):
     def from_json_dict(cls, json_dict):
         new_search = cls(
             attribute=None,
-            values=None
+            value=None
         )
         new_search.regulations = json_dict['regulations']
         new_search.values = json_dict['values']

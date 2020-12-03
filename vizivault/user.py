@@ -1,4 +1,4 @@
-from anontech_vizivault.entity import Entity
+from vizivault.entity import Entity
 
 
 class User(Entity):

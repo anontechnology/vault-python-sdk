@@ -1,6 +1,6 @@
 import pytest
 import os
-from anontech_vizivault import ViziVault, SearchRequest, User, AttributeDefinition, Attribute, Tag, \
+from vizivault import ViziVault, SearchRequest, User, AttributeDefinition, Attribute, Tag, \
     VaultResponseException, Regulation, ConjunctiveRule, AttributeRule, AttributeListOperator, \
     UserRule, UserValuePredicate
 
@@ -206,7 +206,7 @@ def test_regulations(vault):
 
 def test_attribute_definition(vault):
     attribute_def1 = AttributeDefinition("TestAttribute1")
-    attribute_def1.indexed = True;
+    attribute_def1.indexed = True
     vault.store_attribute_definition(attribute_definition=attribute_def1)
 
     received_definition = vault.get_attribute_definition(attribute_def1.name)

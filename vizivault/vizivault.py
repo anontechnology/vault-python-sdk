@@ -4,17 +4,17 @@ import os
 from requests import Response
 from typing import List
 
-from anontech_vizivault.entity import Entity
-from anontech_vizivault.user import User
-from anontech_vizivault.vault_response_excption import VaultResponseException
-from anontech_vizivault.vault_communication_exception import VaultCommunicationException
-from anontech_vizivault.attribute import Attribute
-from anontech_vizivault.tag import Tag
-from anontech_vizivault.regulation import Regulation
-from anontech_vizivault.search_request import SearchRequest
-from anontech_vizivault.entity_definition import EntityDefinition
-from anontech_vizivault.attribute_definition import AttributeDefinition
-from anontech_vizivault.attribute_set import AttributeSet
+from vizivault.entity import Entity
+from vizivault.user import User
+from vizivault.vault_response_excption import VaultResponseException
+from vizivault.vault_communication_exception import VaultCommunicationException
+from vizivault.attribute import Attribute
+from vizivault.tag import Tag
+from vizivault.regulation import Regulation
+from vizivault.search_request import SearchRequest
+from vizivault.entity_definition import EntityDefinition
+from vizivault.attribute_definition import AttributeDefinition
+from vizivault.attribute_set import AttributeSet
 
 
 class ViziVault:
