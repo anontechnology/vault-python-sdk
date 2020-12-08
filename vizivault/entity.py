@@ -29,7 +29,7 @@ class Entity(JSONObject):
                                              tags=attribute['tags'],
                                              created_date=attribute['createdDate'],
                                              modified_date=attribute['modifiedDate'])
-                self.add_attribute_without_pending_change(attribute_to_add)
+                self.__add_attribute_without_pending_change(attribute_to_add)
 
     @property
     def changed_attributes(self):
@@ -44,14 +44,14 @@ class Entity(JSONObject):
             attribute = Attribute(attribute=attribute, value=value)
 
         if isinstance(attribute, Attribute):
-            self.add_attribute_without_pending_change(attribute)
+            self.__add_attribute_without_pending_change(attribute)
             self.__changed_attributes.add(attribute)
         else:
             raise TypeError(
                 'Argument attribute is not of type attribute or a string/value pair'
                 ' that can be coerced into an attribute')
 
-    def add_attribute_without_pending_change(self, attribute):
+    def __add_attribute_without_pending_change(self, attribute):
         attribute_key = attribute.attribute
 
         if attribute_key in self.__repeated_attributes:
