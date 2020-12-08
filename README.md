@@ -1,7 +1,7 @@
 ## Anontech Python ViziVault Bindings
 
 ### Project Description
-Anontech vizivault is designed to make the retrieval and storage of personal and sensitive information easy. Our multi-layer encryption/decryption layer will make your data secure and accesable only to memebrs of your organization on a "need-to-use" basis. Data providers, individuals, end users, and even developers can rest safe knownign their personal data is stored securely, access is monitored, and thier most personal data is kept securely seperate from day to day business operations. Personal data is there when you need it most to support business operations and disapers back into the vault when it's not needed. Safe and secure.
+AnonTech's ViziVault system is designed to make the retrieval and storage of personal and sensitive information easy. Our multi-layer encryption/decryption system will make your data secure and accessible only to memebrs of your organization on a "need-to-use" basis. Data providers, individuals, end users, and even developers can rest safe knowing that their personal data is stored securely, access is monitored, and their most personal data is kept securely, seperate from day-to-day business operations. Personal data is there when you need it most to support business operations, and disappears back into the vault when it's not needed, so that your system can be safe and secure.
 
 
 ### Support
