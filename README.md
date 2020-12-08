@@ -10,7 +10,7 @@ Please report bugs and issues to support@anontech.io
 ### Requirements
 Only `Python 3` is currently supported.
 
-The basic third party dependencies are the requests and pytest. Libraries installation happens automatically during setup.
+The basic third party dependencies are `requests` and `pytest`, which are set up automatically by pip on installation.
 
 ### Installaion
 ```
@@ -22,16 +22,16 @@ pip install -e git://github.com/anontechnology/vault-python-sdk.git/#egg=vizivau
 import vizivault
 ```
 
-Alternatively you can just take the vault class
+Alternatively, it is possible to just take the vault class:
 
 ```
 from vizivault import ViziVault
 ```
 
 ### Authentication
-You must provide an application identifier or api key for all operations to identify you and your application to the vault for authenticaion. For data insertion you need to provide a valid encryption key. For data retrieval you need to apply a valid decryption key.
+You must provide an application identifier or api key for all operations, to identify you and your application to the vault for authenticaion. For data insertion, a valid encryption key is necessary. For data retrieval, a valid decryption key is necessary.
 
-We recommend at a minimum putting your encryption and decryption key locally in a secure location and refer to it with a filehandle.
+We recommend at a minimum putting your encryption and decryption key locally in a secure location, such as a local file on disk.
 
 ### Quick start
 
@@ -41,25 +41,24 @@ We recommend at a minimum putting your encryption and decryption key locally in 
 with open('./my_secure_file/test_encryption_key.txt', 'r') as encryption_file:
     encryption_key = encryption_file.read()
 with open('./my_secure_file/test_decryption_key.txt', 'r') as decryption_file:
+    decryption_key = decryption_file.read()
 vault = vizivault.ViziVault(base_url='http://localhost:8083', api_key='12345', encryption_key=encryption_key,
                   decryption_key=decryption_key)`
 ```
 
 #### Attributes
 
-[Attributes](https://docs.anontech.io/glossary/attribute/) are how the ViziVault ecosystem organizes your data. Every data point consists of three main components: a user id, which represents who the data is about; a value, which is some piece of information about the user; and an attribute, which expresses the relationship between the user and the value. For example, in an online retail application, there would be an attribute for shipping addresses, an attribute for billing addresses, and an attribute for credit card information.
+[Attributes](https://docs.anontech.io/glossary/datapoint/) are how the ViziVault ecosystem organizes your data. Every attribute consists of three main components: a user id, which represents who the data is about; a value, which is some piece of information about the user; and an attribute name, which expresses the relationship between the user and the value. For example, in an online retail application, there would be an attribute for shipping addresses, an attribute for billing addresses, and an attribute for credit card information.
 
 #### Adding an Attribute to an Entity or User
 
-[Attributes](https://docs.anontech.io/glossary/attribute/) are stored as key/value pairs of strings. Both Users and Entities can have Attributes set to them. If there is an existing Attribute in the system with the key of the provided Attribute, that Attribute will be updated; otherwise, a new Attribute will be created.
-
-```
-// Retrieving all attributes for a user
+```python
+# Retrieving all attributes for a user
 new_user = User("exampleUser")
 new_user.add_attribute(attribute="FIRST_NAME", value="Jane")
 vault.save(new_user)
 
-// Adding an Attribute to entity
+# Adding an Attribute to entity
 entity = vault.find_by_entity("exampleClient")
 entity.add_attribute(attribute="FULL_ADDRESS", value="1 Hacker Way, Beverly Hills, CA 90210")
 vault.save(entity)
@@ -68,21 +67,21 @@ vault.save(entity)
 
 
 ### Retrieving all Attributes of an Entity or User
-Retrieves all [Attributes](https://docs.anontech.io/glossary/attribute/) for the specified entity or user. Returns a list of Attribute objects
+Retrieves all [Attributes](https://docs.anontech.io/glossary/datapoint/) for the specified entity or user. Returns a list of attribute objects.
 
-```
+```python
 # Retrieving all attributes for a user
 user = vault.find_by_user(entityid = "User1234")
 attributes = user.get_attributes()
 
 # Retrieving all attributes for an entity
 entity = vault.find_by_entity(entityid = "Client6789")
-attributes = entity.get_attributes
+attributes = entity.get_attributes()
 ````
 
 ### Searching
 
-To search a Vault for [Attributes](https://docs.anontech.io/glossary/attribute/) , pass in a SearchRequest. A list of matching Attributes will be returned. For more information, read about ViziVault search.
+To search a vault for [Attributes](https://docs.anontech.io/glossary/datapoint/) , pass in a SearchRequest. A list of matching Attributes will be returned. For more information, read about [ViziVault Search](https://docs.anontech.io/tutorials/search/).
 
 ```
 attributes = vault.search(SearchRequest(attribute = "LAST_NAME", value = "Doe"))
@@ -102,7 +101,7 @@ vault.save(user);
 
 ### Attribute Definitions
 
-[Attributes](https://docs.anontech.io/glossary/attribute/) define an object, housing all relevant metadata for the key. This is how Tags and Regulations become associated with attributes. Attributes can be comprised of a schema to further break down the structure of the value of the Attribute. Display names and hints can also be added to the Attribute Definition for ease of use and readability.
+[Attribute definitions](https://docs.anontech.io/glossary/attribute/) define an object that contains all relevant metadata for attributes with a given `key`. This is how tags and regulations become associated with attributes. Attributes can contain a schema to further break down the structure of their value. Display names and hints can also be added to the Attribute Definition for ease of use and readability.
 
 #### Storing an Attribute Definition in the Vault
 
