@@ -138,7 +138,7 @@ Similar to [Regulations](https://docs.anontech.io/glossary/regulation/) , [Tags]
 To store a new [Tag](https://docs.anontech.io/api/tags/) , create a Tag object and save it to the Vault.
 
 ```python
-vault.store_tag(tag = "Financial Data")
+vault.store_tag(Tag("Financial Data"))
 ```
 
 #### Retrieving Tags from the Vault
@@ -147,7 +147,7 @@ vault.store_tag(tag = "Financial Data")
 
 ```python
 # Retrieving all tags
-tags = vault.tags
+tags = vault.get_tags()
 
 # Retrieving specific tag
 tag = vault.get_tag(name = "Financial Data")
