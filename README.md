@@ -18,13 +18,13 @@ pip install -e git://github.com/anontechnology/vault-python-sdk.git/#egg=vizivau
 ```
 
 ### Importing the Module
-```
+```python
 import vizivault
 ```
 
 Alternatively, it is possible to just take the vault class:
 
-```
+```python
 from vizivault import ViziVault
 ```
 
@@ -37,7 +37,7 @@ We recommend at a minimum putting your encryption and decryption key locally in 
 
 #### Attaching to your Vault
 
-```
+```python
 with open('./my_secure_file/test_encryption_key.txt', 'r') as encryption_file:
     encryption_key = encryption_file.read()
 with open('./my_secure_file/test_decryption_key.txt', 'r') as decryption_file:
@@ -77,23 +77,23 @@ attributes = user.get_attributes()
 # Retrieving all attributes for an entity
 entity = vault.find_by_entity(entityid = "Client6789")
 attributes = entity.get_attributes()
-````
+```
 
 ### Searching
 
 To search a vault for [Attributes](https://docs.anontech.io/glossary/datapoint/) , pass in a SearchRequest. A list of matching Attributes will be returned. For more information, read about [ViziVault Search](https://docs.anontech.io/tutorials/search/).
 
-```
+```python
 attributes = vault.search(SearchRequest(attribute = "LAST_NAME", value = "Doe"))
 ```
 
 ### Deleting User Attributes
 ```
-// Purging all user attributes
+# Purging all user attributes
 User user = vault.find_by_user(entitiyid = "User1234");
 vault.purge(user);
 
-// Removing specific attribute
+# Removing specific attribute
 User user = vault.find_by_user(entityid = "User1234");
 user.clear_attribute("LAST_NAME");
 vault.save(user);
@@ -107,7 +107,7 @@ vault.save(user);
 
 To store an Attribute Definition, create an AttributeDefinition object and save it to the Vault. The following code details the various properties of the AttributeDefinition object.
 
-```
+```python
 attribute = AttributeDefinition(
     name = "Billing Address",
     tags = ["geographic_location", "financial"],
@@ -121,11 +121,8 @@ attribute = AttributeDefinition(
                     "country": "string"
                   })
     repeatable = false,
-    immutable = false,
-    mandatory = true,
     indexed = false,
     regulations = ["GDPR", "CCPA"]
-    
 )
 
 vault.storeAttribute(attribute)
@@ -140,7 +137,7 @@ Similar to [Regulations](https://docs.anontech.io/glossary/regulation/) , [Tags]
 
 To store a new [Tag](https://docs.anontech.io/api/tags/) , create a Tag object and save it to the Vault.
 
-```
+```python
 vault.store_tag(tag = "Financial Data")
 ```
 
@@ -148,7 +145,7 @@ vault.store_tag(tag = "Financial Data")
 
 [Tags](https://docs.anontech.io/api/tags/) can be retrieved as a list of Tag objects or as a single Tag if the specific Tag is specified.
 
-```
+```python
 # Retrieving all tags
 tags = vault.tags
 
@@ -160,8 +157,7 @@ tag = vault.get_tag(name = "Financial Data")
 
 To remove a [Tag](https://docs.anontech.io/api/tags/) , specify the Tag to be removed. A boolean denoting the status of the operation will be returned.
 
-```
-
+```python
 # Removing a specific tag
 removed = vault.remove_tag(name = "Financial Data")
 
@@ -176,7 +172,7 @@ A regulation object represents a governmental regulation that impacts how you ca
 To store a [Regulation](https://docs.anontech.io/glossary/regulation/) to the Vault, create a new Regulation object and save it to the Vault. The constructor takes the key, name, and url of the Regulation.
 
 
-```
+```python
 # Storing a regulation
 regulation = Regulation(key = "GDPR", 
                          name = "General Data Protection Regulation",
@@ -190,7 +186,7 @@ saved_regulation = vault.save(regulation)
 
 [Regulations](https://docs.anontech.io/glossary/regulation/) can be retrieved as a list of Regulation objects or as a single Regulation if the specific Regulation is specified.
 
-```
+```python
 # Retrieving all regulations
 regulations = vault.regulations
 
@@ -202,7 +198,7 @@ regulation = vault.get_regulation(key = "GDPR")
 
 To remove a [Regulation](https://docs.anontech.io/glossary/regulation/) , specify the Regulation to be removed. A boolean denoting the status of the operation will be returned.
 
-```
+```python
 # Removing a specific regulation
 removed = vault.remove_regulation(key = "GDPR")
 ```
