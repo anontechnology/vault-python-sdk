@@ -44,7 +44,7 @@ def new_user(vault, attribute_def1, attribute_def2):
 
     vault.save(new_user)
     yield new_user
-    vault.purge(new_user)
+    vault.purge(new_user.id)
 
 
 def test_load(vault):
@@ -60,26 +60,26 @@ def test_load(vault):
         assert user_response.get_attribute('TestAttribute1').value == 'Example1'
 
     finally:
-        vault.purge(new_user)
+        vault.purge(new_user.id)
 
 
 def test_repearted_attribute_save(vault):
     ## Create Attribute
     attribute_def2 = AttributeDefinition("TestAttribute2")
+    attribute_def2.Repeatable = True
     vault.store_attribute_definition(attribute_definition=attribute_def2)
     new_user = User("example2User")
 
     try:
         new_user.add_attribute(attribute=attribute_def2.name, value="ExampleA")
         new_user.add_attribute(attribute=attribute_def2.name, value="ExampleB")
-        attribute_def2.Repeatable = True
         vault.save(new_user)
         user_response = vault.find_by_user('example2User')
         assert sorted(list(map(lambda x: x.value, user_response.get_attribute('TestAttribute2')))) == ['ExampleA',
                                                                                                        'ExampleB']
 
     finally:
-        vault.purge(new_user)
+        vault.purge(new_user.id)
 
 
 def test_search(vault):
@@ -113,7 +113,7 @@ def test_search(vault):
         assert len([result for result in results if
                     (result.userId == new_user_2.id and result.attribute == attribute_def2.name)]) == 1
     finally:
-        vault.purge(new_user)
+        vault.purge(new_user.id)
         vault.purge(new_user_2)
 
 
@@ -166,7 +166,7 @@ def test_tags(vault):
         assert sorted(list(map(lambda x: x.name, all_tags))) == []
 
     finally:
-        vault.purge(new_user)
+        vault.purge(new_user.id)
         vault.delete_tag("tag1")
         vault.delete_tag("tag2")
         vault.delete_tag("tag3")
