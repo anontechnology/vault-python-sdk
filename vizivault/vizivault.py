@@ -117,18 +117,13 @@ class ViziVault:
         self.__post_with_encryption_key(f"/users/{entity.id}/attributes", storage_request)
         entity.changed_attributes.clear()
 
-    def purge(self, entity: Entity):
+    def purge(self, entityId: str):
         """
         Deletes all attributes of a user/entity
-        :param entity: Entity
+        :param entityId: str
         """
-        if not isinstance(entity, Entity):
-            raise TypeError(
-                'Argument entity is not of type Entity'
-            )
 
-        self.__delete(f"/users/{entity.id}/data")
-        entity.purge()
+        self.__delete(f"/users/{entityId}/data")
 
     def store_attribute_definition(self, attribute_definition: AttributeDefinition) -> Response:
         """
