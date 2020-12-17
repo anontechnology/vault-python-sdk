@@ -7,10 +7,8 @@ from vizivault.regulation import Regulation
 from vizivault.search_request import SearchRequest
 from vizivault.tag import Tag
 from vizivault.attribute import Attribute
-from vizivault.tag import Tag
 from vizivault.vault_response_excption import VaultResponseException
 from vizivault.vault_communication_exception import VaultCommunicationException
-from vizivault.regulation import Regulation
 from vizivault.rules.conjunctive_rule import ConjunctiveRule
 from vizivault.rules.disjunctive_rule import DisjunctiveRule
 from vizivault.rules.attribute_rule import AttributeRule
