@@ -1,5 +1,5 @@
-from attribute import Attribute
-from json_object import JSONObject
+from .attribute import Attribute
+from vizivault.json_object import JSONObject
 
 
 class AttributeSet(JSONObject):

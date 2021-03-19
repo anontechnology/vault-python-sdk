@@ -1,5 +1,5 @@
 from vizivault.schema.primitive_schema import PrimitiveSchema
-from json_object import JSONObject
+from vizivault.json_object import JSONObject
 
 
 class AttributeDefinition(JSONObject):

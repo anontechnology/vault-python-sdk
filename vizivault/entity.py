@@ -1,6 +1,6 @@
 from vizivault.attribute import Attribute
 from itertools import chain
-from json_object import JSONObject
+from vizivault.json_object import JSONObject
 
 
 class Entity(JSONObject):

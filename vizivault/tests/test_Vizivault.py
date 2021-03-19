@@ -8,10 +8,9 @@ from vizivault.rules import ConjunctiveRule, AttributeRule, AttributeListOperato
 
 @pytest.fixture
 def vault():
-    path = os.getcwd()
-    with open('./resources/test_encryption_key.txt', 'r') as encryption_file:
+    with open('./vizivault/tests/resources/test_encryption_key.txt', 'r') as encryption_file:
         encryption_key = encryption_file.read()
-    with open('./resources/test_decryption_key.txt', 'r') as decryption_file:
+    with open('./vizivault/tests/resources/test_decryption_key.txt', 'r') as decryption_file:
         decryption_key = decryption_file.read()
     vault = ViziVault(base_url='http://localhost:8083', api_key='12345', encryption_key=encryption_key,
                       decryption_key=decryption_key)
@@ -64,16 +63,16 @@ def test_load(vault):
         vault.purge(new_user.id)
 
 
-def test_repearted_attribute_save(vault):
+def test_repeated_attribute_save(vault):
     ## Create Attribute
     attribute_def2 = AttributeDefinition("TestAttribute2")
+    attribute_def2.repeatable = True
     vault.store_attribute_definition(attribute_definition=attribute_def2)
     new_user = User("example2User")
 
     try:
         new_user.add_attribute(attribute=attribute_def2.name, value="ExampleA")
         new_user.add_attribute(attribute=attribute_def2.name, value="ExampleB")
-        attribute_def2.repeatable = True
         vault.save(new_user)
         user_response = vault.find_by_user('example2User')
         assert sorted(list(map(lambda x: x.value, user_response.get_attribute('TestAttribute2')))) == ['ExampleA',
@@ -130,8 +129,8 @@ def test_get_user_attribute(vault, new_user):
 
     received_data = vault.get_user_attribute("exampleUser", "TestAttribute2")
     assert len(received_data) == 2
-    assert received_data[0].value == 'ExampleA'
-    assert received_data[1].value == 'ExampleB'
+    assert len(list(filter(lambda x: x.value == 'ExampleA', received_data))) == 1
+    assert len(list(filter(lambda x: x.value == 'ExampleB', received_data))) == 1
 
 def test_tags(vault):
     # Create attributes
@@ -238,11 +237,11 @@ def test_error_condition(vault, new_user):
 def test_quickstart():
     # 1. Replace 'my_encryption_file.txt'  with the path to your encryption file
 
-    with open('./resources/test_encryption_key.txt', 'r') as encryption_file:
+    with open('./vizivault/tests/resources/test_encryption_key.txt', 'r') as encryption_file:
         encryption_key = encryption_file.read()
 
     # 2 Replace 'my_decryption_file.txt' with the path to your decryption file
-    with open('./resources/test_decryption_key.txt', 'r') as decryption_file:
+    with open('./vizivault/tests/resources/test_decryption_key.txt', 'r') as decryption_file:
         decryption_key = decryption_file.read()
 
 
@@ -294,7 +293,7 @@ def test_quickstart():
     vault.store_attribute_definition(attribute_definition=name_attribute_def)
     vault.store_attribute_definition(attribute_definition=address_attribute_def)
 
-    with open('./resources/tutorial_test.csv', 'r') as csv_file:
+    with open('./vizivault/tests/resources/tutorial_test.csv', 'r') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         header_row = True
 
@@ -339,7 +338,7 @@ def test_quickstart():
                 vault.save(new_user)
 
 
-    with open('./resources/tutorial_test.csv', 'r') as csv_file_2:
+    with open('./vizivault/tests/resources/tutorial_test.csv', 'r') as csv_file_2:
         csv_reader = csv.reader(csv_file_2, delimiter=',')
         header_row = True
 
