@@ -1,5 +1,5 @@
 from vizivault.schema.primitive_schema import PrimitiveSchema
-from json_object import JSONObject
+from vizivault.json_object import JSONObject
 
 
 class AttributeDefinition(JSONObject):
@@ -20,7 +20,7 @@ class AttributeDefinition(JSONObject):
     @classmethod
     def from_json_dict(cls, json_dict: dict):
         new_attribute_definition = cls(
-            name=json_dict['name'],
+            name=json_dict['key'],
             hint=json_dict['hint'],
             repeatable=json_dict['repeatable'],
             indexed=json_dict['indexed'],

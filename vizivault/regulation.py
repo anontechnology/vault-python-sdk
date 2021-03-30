@@ -1,4 +1,4 @@
-from json_object import JSONObject
+from vizivault.json_object import JSONObject
 
 
 class Regulation(JSONObject):
