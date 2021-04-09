@@ -93,7 +93,7 @@ vault.save(user)
 To search a vault for [attributes](https://docs.anontech.io/glossary/attribute/) , pass in a SearchRequest. A list of matching attributes will be returned. For more information, read about [ViziVault Search](https://docs.anontech.io/tutorials/search/).
 
 ```python
-attributes = vault.search(SearchRequest(attribute = "LAST_NAME", value = "Doe"))
+attributes = vault.search(SearchRequest(attribute = "LAST_NAME", value = "Doe"), page=0, count=25)
 ```
 
 ## Attribute definitions
