@@ -291,7 +291,14 @@ class ViziVault:
         """
 
         :rtype: Attribute
-        :param data_point_id: (int) attribute primary key
-        :return: Attribute associated with the attribute
+        :param data_point_id: (str) unique id of attribute (datapoint id)
+        :return: Attribute with the desired datapoint id
         """
         return Attribute.from_json(self.__get_with_decryption_key(f"/data/{data_point_id}").content)
+
+    def delete_data_point(self, data_point_id: str) -> Attribute:
+        """
+
+        :param data_point_id: (str) unique id of attribute (datapoint id)
+        """
+        self.__delete(f"/data/{data_point_id}")
